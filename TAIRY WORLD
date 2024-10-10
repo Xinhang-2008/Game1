@@ -1,0 +1,132 @@
+#The Welcome Screen
+print("WELCOME TO TAIRY WORLD")
+print("Room 1 : Forest\nYou're in a mysterious forest, you can't see the sky above you in the fog, and you hear strange noises in the distance.")
+print ("Task: Follow the sound and find the path.Choose go \"left way\" or \"right way\".") # Print Game scenarios and game requirements.
+choice = input () # Get user input (left way or right way)
+petal= 0 # Initialize counter. Use a counter to record the number of petals obtained.
+if choice == "left way": # If the input is True with "left way", perform the following procedure.(Output)
+    print("Room 2 : Cave\nAs you walk along the path, the road Narrows and the fog clears and you enter a cave. Suddenly a stone door appears in front of you.")
+    print(" Enter the code to open the stone door.Password is the incantation from the Arabian tale of the Thousand and One Nights")
+    password = input() # Get user input (password)
+    if password == "Open Sesame":  # If the input is True with "Open Sesame", perform the following procedure.
+        print ("you got a petal") # Output 
+        petal += 1 # increment counter. Use a cournt record the number of petals increace.
+        print("Room 4: Stone chamber You enter the cave and walk forward into a stone chamber with a rattan wrapped around a flower in the middle.")
+        print("Task: You need to pluck the petals of this flower before you can move on. (try a total of three times, and if fail all three times, will move to the next room")
+        #Up to three attempts
+        pick_flower = False # Use boolean values.
+        for i in range (3): # Use a for loop with range(3), which will iterate 3 times (from 0 to 2).
+            answer = input ("\"Pick the flowers\" or \"Use the spell\"?") # Get user input
+            if answer == "Pick the flowers": # If the input is True with "Pick the flowers", perform the following procedure.
+                print ("you got a petal") # Output
+                petal += 1 # increment counter. Use a cournt record the number of petals increace.
+                pick_flower = True # Use boolean values. 
+                break # Stop the loop if selected correctly.
+        if pick_flower: # If Pick the flowers , perform the following procedure.
+            print ("Room8:Castle\nYou enter a huge castle, and in the center of the great hall of the castle there is a huge rose, and the flower is covered by a glass hood.")
+            print ("Task: You need to enter the number (How many petals you have) to open the glass cover and place the petals you have on the rose Correct  or Uncorrect.")
+            number = input ("Enter the number") # Get user input
+            if number == str(petal): # Use strings. If the input number is eqaul to petals increment counter, perform the following procedure.
+                print ("Ending : You get the rose give it to the king.")
+            else : # Execute this block if all previous conditions are False.
+                print ("Ending : you don't, king will kill you.")
+        else : # Execute this block if all previous conditions are False.
+            print("Room9: Ancient building \nYou enter an ancient building where a dragon is perched on a pillar.")
+            print("Task: you choose to attack the dragon with \" fire\" or \"water\".")
+            if input ()=="fire": #If the input is True with "fire", perform the following procedure.
+              print ("you kill the dragon with the fire,game over")
+            elif input () == "water": # If the input is False with "fire",the "water" is True , perform the following procedure.
+              print ("you are killed by the dragen,game over")
+            else: # Execute this block if all previous conditions are False.
+             print ("you didn't do anything by the dregon, game over")
+
+
+    else : # Execute this block if all previous conditions are False.   
+        print("Room5: Wolf's den \nYou answer wrong, suddenly enter the darkness, a Wolf appears in front of you, you enter the Wolf's den. It's coming towards you and trying to attack you.")
+        print("Task:\" attack the Wolf\" or \" escape\"")
+        choice2 = input() # Get input
+        if choice2 == "attack the wolf " and petal > 0:  # If the input is True with "attack the wolf " and petals increment counter is greater than 0 , perform the following procedure.
+            print ("Room 14 : Field of honor \n You need to fight the Wolf")
+            print ("Task :\n Choose one of your weapons: bow, hammer, machete, hand")
+            weapon_list = ["bow","hammer","machete","hand"] # Have a list of weapon.
+            choice3 = input() # Get user input 
+            #First check to see if you choose the right weapon
+            if choice3 in weapon_list: # If the input is in the weapon_list, perform the following procedure.
+                print("you chooose the weapon :",choice3) # Output
+                if choice3 =="bow": # If the input is in the weapon_list and is True with "bow", perform the following procedure.
+                 print("you killed the wolf with the bow, game over!")
+                else : # Execute this block if all previous conditions are False.
+                  print ("you were killed by the wolf, gave over")
+            else: # Execute this block if all previous conditions are False.
+                print("Invalid weapon chioce")
+                print ("you dont have any weapons ,you are killed by the wolf ,game over")
+        else: # Execute this block if all previous conditions are False.
+            print ("Room 15 :Garden \nYou enter a garden, and in the center of the great hall of the garden there is a huge rose, and the flower is covered by a glass hood.")
+            print ("Task: You need to enter the number (How many petals you have) to open the glass cover and place the petals you have on the rose Correct  or Uncorrect.")
+            number = input ("Enter the number") # Get user input
+            if number == str(petal): # Use strings. If the input number is eqaul to petals increment counter, perform the following procedure.
+                print ("Ending : You get the rose give it to the king.")
+            else :  # Execute this block if all previous conditions are False.
+                print ("Ending : you don't, king will kill you.")
+
+elif choice == "right way": # If the input is False with "left way" is True with "right way" , perform the following procedure.
+    print("Room3: Lake\nYou walk along the path on your right and come to a lake. There is a boat and an old man sitting by the lake.")
+    print('Task: You can choose to "get on the boat" or "talk to old man".')
+    choose = input () # Get input
+    if choose =="get on the boat": # If the input is True with "get on the boat", perform the following procedure.
+        print ("Room6:Island\nYou get into a boat. The boat stops in the middle of a lake. There is an island in front of it. There is a tombstone on the shore.")
+        print ("Task: need to answer questions on it to get to the island.(Write numbers equals how many dwarfs Snow White has)")
+        answer = input () # Get input
+        if answer == "7": # If the input is True with "7", perform the following procedure.
+            print ("you got a petal") # output
+            petal += 1 # increment counter. Use a cournt record the number of petals increace.
+            print("Room 10 :Middle of island\n You land on an island. There is a flower bed in the middle of the island. You need to pick the roses from the bed.")
+            print("Task: Choose a flower picking tool: scissors, hands.")
+            picking_tool = ["scissors","hands"] # Have a list of tool.
+            choice1 = input() # Get input
+            #First check to see if you choose the right weapon
+            if choice1 in picking_tool: # If the input is in the picking_tool , perform the following procedure
+               print("you chooose the picking tool :",choice1) # Output
+               if choice1 =="scissors": # If the input is True with "scissors", perform the following procedure.
+                 print("Choose right you get the flower and give it to the king, game over!")
+               else : # Execute this block if all previous conditions are False.
+                print ("Choose wrong you don't get the flower and the king will kill you, gave over")
+            else: # Execute this block if all previous conditions are False.
+              print("Invalid chioce")
+              print ("You dont have any tool ,you are killed by the king ,game over")
+        else: # Execute this block if all previous conditions are False.
+            print("Room 11 : Sea\nYou fall into a sea, a mermaid sees you, and you need to tell her your age to be rescued.")
+            print ("Task: Enter your age.")
+            age1= int(input ()) # Use integars. Get user input.
+            if age1 == 18: # If the input is True with 18 , perform the following procedure.
+             print ("A mermaid will save you and send you roses.You gave the flowers to the king. Game over.")
+            else : # Execute this block if all previous conditions are False.
+             print ("You will drown.Game over.")
+
+    elif choose == "talk to old man": # If the input is False with "get on the boat" is True with "talk to the old man" , perform the following procedure.
+          print ("Room7:Pool \nThe old man uses magic to lead you into the pool at the bottom of the lake")
+          print ("Task:You must tell the old man your age(Above 6, you can get) before he can give you the rose petals.")
+          age = input ("input your age:") # Get input 
+          if int(age)>=6: # Use integars. # If the input is >=6 , perform the following procedure.
+            print ("you got a petal") #Output
+            petal += 1 # increment counter. Use a cournt record the number of petals increace.
+            print("Room 12:Snow mountain \nYou come to the snow mountain, you need to find a rose.")
+            print("Task: Wake the rose with \"Magic\" or with your \"Eyes\".")
+            if input ()=="Magic": # If the input is True with "Magic", perform the following procedure.
+              print ("You get the flower and give it to the king,GAME OVER")
+            elif input () == "Eyes": # If the input is False with "Magic" is True with "Eyes" , perform the following procedure.
+              print ("You don't get the flower and the king will kill you.,game over")
+            else: # Execute this block if all previous conditions are False.
+              print ("you didn't do anything, game over")
+          else :# Execute this block if all previous conditions are False.
+            print("Room 13 :Prison\n You did not get the old man's petal, and the king arrested you. There's a password on the prison door that you need to break in order to escape.")
+            print ("Enter password (1+2+4+8=?)")
+            password = int(input ()) #Use integars Get user input.
+          if (password == 15) : # If the input is True with 15 , perform the following procedure.
+            print ("Answer correctly you get out of prison,game over")
+          else : # Execute this block if all previous conditions are False.
+            print("Answer incorrectly you will be killed by the king, game over")
+    else :
+        print ("Invalid input") # Execute this block if all previous conditions are False.
+else: # Execute this block if all previous conditions are False.
+    print ("Invalid input")
