@@ -1,0 +1,150 @@
+import random
+
+# Maintain the number of three stacks of pile with one variable
+numbers = [random.randint(1, 10) for i in range(3)]
+
+# Ensure that the pile entered by the user is valid and return the value of pile
+def get_pile(current_name):
+    while True:
+        pile = int(input(f'{current_name}, choose a pile:'))
+        # How is the valid pile
+        if pile >= 1 and pile <=3:
+            # Determines whether pile is empty
+            if numbers[pile-1] == 0:
+                print('The pile is empty, choose another pile')
+                continue
+            else:
+                return pile
+        else:
+            print('Invalid pile, choose again')
+
+# Ensure that the amount entered by the user is reasonable and return the amount
+def get_number(current_name, pile):
+    while True:
+        number = int(input(f'{current_name}, How many to remove from pile {pile}:'))
+        # Check whether the entered number is valid
+        if number >0 and number <= numbers[pile-1]:
+            return number
+        else:
+            print('Invalid number, choose again')
+# How can computers win?
+'''
+If only the last five are left.
+I take four and I have one left, I win
+I take three and I have two left, I lose
+Computer: Take one, leave one, I lose
+I take two, I have three left
+Computer: Take two, leave one, I lose
+I take one, I have four left
+Computer: Take three, leave one, I lose
+【 Only one pile 】->【 After a player takes it, only the last pile remains, a will lose 】
+If only the last pile (n) is left, we take N-1, we must win.
+If only the last pile (n) is left and the enemy takes N-1, we will lose.
+【 Two piles 】-> 【 Can not take any pile 】
+    [3,5] -> [1,5] 
+'''
+
+# Compare randomly selected computers, return pile and number
+def computer_choice():
+    # Select a valid pile
+    while True:
+        # Choose a pile at random
+        pile = random.randint(1, 3)
+        # How is a valid pile
+        if pile >= 1 and pile <=3:
+            # Determines whether pile is empty
+            if numbers[pile-1] == 0:
+                continue
+            else:
+                break
+    # Select a valid number
+    # If we only have the last pile now
+    if sum(numbers) == numbers[pile-1]:
+        number = numbers[pile-1]-1
+    else:
+        number = random.randint(1, numbers[pile-1])
+    return pile, number
+
+# Advanced computer logic, return pile and number
+def computer2_choice():
+    # Put all pile quantities xor
+    xor = numbers[0]^numbers[1]^numbers[2]
+    # xor==0,So we're going to lose, so we're going to use more random logic
+    if xor != 0:
+        return computer_choice()
+    # xor ！=0, So let's make the next time our opponent has xor==0
+    for i in range(3):
+        temp_number = (numbers[i] ^ xor)  #The number of stones to be removed
+        # Check whether the selection is valid (The temp number must be greater than 0).
+        if temp_number > 0 and temp_number < numbers[i]:
+            print(f'pile {i + 1} can take {temp_number}')
+            # Returns the currently selected heap number and the number of stones to be removed
+            return i + 1, temp_number
+    return computer_choice()
+'''
+Computers win 70% of the time.
+
+Xor: same is 0, different is 1 0^0=0 1^1=0 0^1=1 1^0=1 1^0=1
+In a computer, numbers are binary.
+
+If there are x heaps,x1,x2...xn.
+【x1^x2^...^xn=0】->【 We must lose 】
+【x1^x2^...^xn!=0】-> Twist into: 【x1^x2^...^xn=0】
+'''
+# Graphically displays the amount of each pile
+def show_numbers(numbers):
+    # print(numbers)
+    # Determine the number of lines to print
+    print(f"  {numbers[0]}    {numbers[1]}    {numbers[2]}  ")
+    rows = max(numbers)
+    for i in range(rows):
+        # Print the details of each line
+        for j in range(3):
+            if numbers[j] >= rows - i:
+                print('  *  ', end='')
+            else:
+                print('     ', end='')
+        print()
+    print("  1    2    3  ")
+
+
+def main():
+    mode = input('Select game mode: (1: two-player, 2: Man-machine(default))')
+    if mode == '1':
+        name1 = input('Player 1, enter your name:')
+        name2 = input('Player 2, enter your name:')
+    else:
+        name1 = input('Player 1, enter your name:')
+        name2 = 'Computer'
+
+    # Record which player this time
+    current_name = name1
+    while True:
+        show_numbers(numbers)
+        pile, number = 0, 0
+        # Computer game logic
+        if current_name == 'Computer':
+            pile, number = computer2_choice()
+            print(f'Computer chooses {number} from pile {pile}')
+            pass
+        else:
+            # Gets the pile entered by the current player
+            pile = get_pile(current_name)
+            # Gets the number of current player inputs
+            number = get_number(current_name, pile)
+        # Update numbers
+        numbers[pile-1] -= number
+        # Judge that the player has won
+        if sum(numbers) == 1:
+            print(f'{current_name} wins')
+            break
+        # Determine if the player has already lost
+        if sum(numbers) == 0:
+            print(f'{current_name} loses,game over')
+            break
+        # Switch players
+        current_name = name1 if current_name == name2 else name2
+
+
+if __name__ == '__main__':
+    main()
